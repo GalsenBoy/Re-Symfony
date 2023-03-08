@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="container">
+		<h1>Liste des articles :</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Titre</th>
+					<th scope="col">Contenu</th>
+					<th scope="col">Date de publication</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for article in articles %}
+					<tr>
+						<td>{{ article.id }}</td>
+						<td>{{ article.title }}</td>
+						<td>{{ article.content }}</td>
+						<td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+						<td>
+							<a class="btn btn-warning" href="{{ path('update_article', {'articleId' : article.id} ) }} ">Modifier<a/></td>
+						</td>
+						<td></td>
+						<td>
+							<a class="btn btn-danger" href="{{ path('delete_article', {'articleId' : article.id}) }}" type="button">Supprimer</a>
+						</td>
+					</tr>
+				</td>
+			</tbody>
+		</tr>
+	{% else %}
+		<tr>
+			<td colspan="5">no records found</td>
+		</tr>
+	{% endfor %}
+</tbody></tr></tbody></tbody></table></div>{% endblock %}
