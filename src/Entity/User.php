@@ -4,11 +4,11 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+// use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -24,14 +24,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
-    #[ORM\Column(nullable:true)]
-    private ?string $password = null;
+    // #[ORM\Column(nullable:true)]
+    // private ?string $password = null;
 
     #[ORM\Column(length: 255)]
     private ?string $googleId = null;
 
     #[ORM\Column(length: 255)]
     private ?string $hostedDomain = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $avatar = null;
 
     public function getId(): ?int
     {
@@ -82,17 +85,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see PasswordAuthenticatedUserInterface
      */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
+    // public function getPassword(): string
+    // {
+    //     return $this->password;
+    // }
 
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
+    // public function setPassword(string $password): self
+    // {
+    //     $this->password = $password;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     /**
      * @see UserInterface
@@ -123,6 +126,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setHostedDomain(string $hostedDomain): self
     {
         $this->hostedDomain = $hostedDomain;
+        return $this;
+    }
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?string $avatar): self
+    {
+        $this->avatar = $avatar;
 
         return $this;
     }
