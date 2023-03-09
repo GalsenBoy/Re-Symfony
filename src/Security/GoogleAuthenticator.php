@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
-use KnpU\OAuth2ClientBundle\Security\Authenticator\SocialAuthenticator;
+// use KnpU\OAuth2ClientBundle\Security\Authenticator\SocialAuthenticator;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
@@ -57,7 +57,7 @@ class GoogleAuthenticator extends OAuth2Authenticator
                     $existingUser = new User();
                     $existingUser->setEmail($email);
                     $existingUser->setGoogleId($googleUser->getId());
-                    $existingUser->setHostedDomain($googleUser->getHostedDomain());
+                    $existingUser->setHostedDomain('ijijijijd');
                     $this->entityManager->persist($existingUser);
                 }
                 $existingUser->setAvatar($googleUser->getAvatar());

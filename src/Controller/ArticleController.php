@@ -22,6 +22,12 @@ class ArticleController extends AbstractController
             'articles' => $articleRepository->findAll(),
         ]);
     }
+
+    #[Route('/dashbord', name: 'app_dashboard')]
+    public function dashbord(): Response
+    {
+        return $this->render('dashbord/index.html.twig',);
+    }
     
     #[Route('/create',name:'add_article')]
     public function createArticle(ManagerRegistry $manager, Request $request){
